@@ -1,7 +1,7 @@
-#include <iostream>
-#include <stdlib.h>
-using namespace std;
+#include "Maze.h"
 
-int main(int argc, char *argv[]) {
-	std::cout << "Hello Easy C++ project!" << std::endl;
+void main() 
+{
+	cout << "Hello Easy C++ project!" << endl;
+	system("pause");
 }
