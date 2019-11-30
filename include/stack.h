@@ -1,22 +1,18 @@
-#ifndef __STACK
-#define __STACK
-#include <iostream>
-#include "./node.h"
-typedef int Type;
-using namespace std;
-class Node;
-class Stack
-{
-private:
-    Node *top;
+#ifndef __STACK_H
+#define __STACK_H
 
+#include "Node.h"
+
+class Stack{
 public:
-    Stack() = default;
-    ~Stack();
-    void makeEmpty(void);
-    int isEmpty(void);
-    void push(Type item);
-    Type pop(void);
-    Type top(void);
+Stack();
+~Stack();
+bool isEmpty();
+void push(int h,int w,char ch);
+Node* pop() ;
+Node* Top() const;
+void makeEmpty();
+private:
+Node* top;
 };
 #endif

@@ -1,6 +1,6 @@
 #include "Maze.h"
 
-Maze::Maze(int h = max_h, int w = max_w)
+Maze::Maze(int h , int w )
 {
     this->maze = new char *[h];
     for (int x = 0; x < w; x++)

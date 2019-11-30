@@ -1,17 +1,30 @@
-#ifndef __NODE
-#define __NODE
-typedef int Type;
+#ifndef __NODE_H
+#define __NODE_H
+
+#include <iostream>
+#include <stdlib.h>
 using namespace std;
 
-class Node
-{
+class Node{
 public:
-    Type data;
-    Node *next;
-    Node();
-    Node(Type item, Node *ptr = nullptr);
-    ~Node();
-    void insertAfter(Node *newnode);
-    Node *DeleteAfter(void);
+friend class Stack;
+Node()=delete;
+Node(int h,int w,char ch,Node* next=nullptr);
+Node(Node& other)=default;//the default copy constractor.
+~Node();
+void insertAfter(Node* newNode);
+Node* deleteAfter();
+void setData(int h,int w);
+void setChar(char ch);
+void setNext(Node* next);
+void getData(int& h,int& w) const;
+Node* getNext() const;
+char getChar() const;
+private:
+int h,w;
+char ch;
+Node* next;
 };
+
+
 #endif

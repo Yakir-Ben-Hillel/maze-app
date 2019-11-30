@@ -1,23 +1,49 @@
-#include "../../include/node.h"
-Node::Node()
+#include "Node.h"
+
+Node::Node(int h, int w,char ch, Node *next ) : h(h),w(w),ch(ch)
 {
-    next = nullptr;
+    this->next = next;
 }
-Node::Node(Type item, Node *ptr)
+Node::~Node()
 {
-    data = item;
-    next = ptr;
+    this->next = nullptr;
 }
-void Node::insertAfter(Node *newnode)
+void Node::insertAfter(Node *newNode)
 {
-    newnode->next = this->next;
-    this->next = newnode;
+    newNode->next = this->next;
+    this->next = newNode;
 }
-Node *Node::DeleteAfter(void)
+Node *Node::deleteAfter()
 {
     Node *temp = this->next;
     if (this->next == nullptr)
         return nullptr;
-    this->next = temp->next;
-    return temp;
+    this->next=temp->next;
+    return (temp);
+}
+void Node::setData(int h, int w)
+{
+    this->h=h;
+    this->w=w;
+}
+void Node::setNext(Node *next)
+{
+    this->next=next;
+}
+void Node::setChar(char ch)
+{
+    this->ch=ch;
+}
+void Node::getData(int &h, int &w) const
+{
+    h = this->h;
+    w=this->w;
+}
+Node *Node::getNext() const
+{
+    return this->next;
+}
+char Node::getChar() const
+{
+    return this->ch;
 }
