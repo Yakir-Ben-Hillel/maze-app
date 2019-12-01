@@ -1,6 +1,6 @@
-#include "Maze.h"
+#include "../include/Maze.h"
 
-void main() 
+int main() 
 {
 	cout << "Hello Easy C++ project!" << endl;
 	system("pause");

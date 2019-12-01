@@ -1,4 +1,4 @@
-#include "Maze.h"
+#include "../../include/Maze.h"
 
 Maze::Maze(int h , int w )
 {

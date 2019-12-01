@@ -1,4 +1,4 @@
-#include "Node.h"
+#include "../../include/Node.h"
 
 Node::Node(int h, int w,char ch, Node *next ) : h(h),w(w),ch(ch)
 {
