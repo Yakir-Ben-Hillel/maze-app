@@ -12,7 +12,7 @@ Maze(int h=max_h,int w=max_w);
 Maze(Maze& other)=default;
 ~Maze();
 void createMaze();
-const char** getMaze() const;
+char** getMaze() const;
 bool ifValidMaze(char** maze,int h,int w);
 int gethight() const;
 int getwidth() const;
