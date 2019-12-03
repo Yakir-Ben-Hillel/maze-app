@@ -12,6 +12,7 @@ Maze(int h=max_h,int w=max_w,char** maze=nullptr);
 Maze(Maze& other)=default;
 ~Maze();
 void createMaze();//TODO
+void solutionMaze();//TODO
 void setMaze(char** maze);
 char** getMaze() const;
 friend bool ifValidMaze(char** maze,int h,int w);//TODO
