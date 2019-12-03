@@ -4,13 +4,6 @@
 //if maze!=nullptr it means the user gave us its own maze and we should set the maze to this maze.
 Maze::Maze(int h, int w, char **maze):h(h),w(w)
 {
-    //allocating the member maze than sent to setMaze the maze of the user or nullptr to make a default maze.
-    //we dont call yet to createMaze because the user has the option to pick his own maze
-    this->maze = new char *[h];
-    for (int i = 0; i < h; i++)
-    {
-        this->maze[i] = new char[w];
-    }
     setMaze(maze);
 }
 Maze::~Maze()
@@ -59,10 +52,12 @@ bool Maze::hasNeighbors(int curr_h, int curr_w)//TODO
 
 void Maze::setMaze(char **maze)
 {
+    this->maze=new char*[this->h];
     if (maze == nullptr)//creating a default maze and then use the function createMaze to pick a random maze
     {
        for(int i=0;i<this->h;i++)
        {
+           this->maze[i]=new char[this->w];
            if(i%2==0)
            {
                for(int j=0;j<w;j++)
@@ -93,6 +88,7 @@ void Maze::setMaze(char **maze)
     {
         for (int i = 0; i < this->h; i++)
         {
+            this->maze[i]=new char[this->w];
             for (int j = 0; j < this->w; j++)
             {
                 this->maze[i][j] = maze[i][j];
