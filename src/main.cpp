@@ -1,7 +1,7 @@
 #include "../include/Maze.h"
-constexpr int x = 3;
-constexpr int y = 5;
+
 void Mfree(char** arr,int h);
+
 int main()
 {
 	//the building main for the part of creating maze
@@ -20,7 +20,7 @@ int main()
 	int h, w;
 	do
 	{
-		cout << "insert the hight and the width of the maze: (in this format hight width)";
+		cout << "insert the hight and the width of the maze:(in this format hight(max:25) then width(max:80))"<<endl;
 		cin >> h >> w;
 		cin.ignore(256, '\n');
 		if ((h > 25 || w > 80) || (h < 0 || w < 0))
@@ -28,7 +28,7 @@ int main()
 	} while ((h > 25 || w > 80) || (h < 0 || w < 0));
 	if (x == 1) //making a random maze
 	{
-		Maze maze(h, w);
+		Maze maze(h, w);//creating the starting maze in the constractor
 		maze.createMaze(); //TODO
 		showMaze(maze.getMaze(), h, w);
 	}
@@ -40,7 +40,7 @@ int main()
 			temp[i] = new char[w];
 			cin.getline(temp[i], w);
 		}
-		if (ifValidMaze(temp, h, w))
+		if (ifValidMaze(temp, h, w)==true)//checks if the user's maze is valid. //TODO
 		{
 			Maze maze(h, w, temp);
 			Mfree(temp,h);

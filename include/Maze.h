@@ -11,17 +11,17 @@ public:
 Maze(int h=max_h,int w=max_w,char** maze=nullptr);
 Maze(Maze& other)=default;
 ~Maze();
-void createMaze();
+void createMaze();//TODO
 void setMaze(char** maze);
 char** getMaze() const;
-friend bool ifValidMaze(char** maze,int h,int w);
+friend bool ifValidMaze(char** maze,int h,int w);//TODO
 int gethight() const;
 int getwidth() const;
-bool hasNeighbors(int curr_h,int curr_w);
 friend void showMaze(const char** maze,int h,int w);
 private:
 char** maze;
 int h,w;
+bool hasNeighbors(int curr_h,int curr_w);//TODO
 };
 
 #endif
