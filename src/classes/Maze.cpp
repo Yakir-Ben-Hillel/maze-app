@@ -32,7 +32,7 @@ void Maze::createMaze()
 {
     //in the constractor we make the full maze so,we already know that the member from the main who call this function is a full maze.
     Stack s;
-    int curr_h, curr_w;
+    int curr_h, curr_w,neighbor_h,neighbor_w;
     s.push(1, 1, '*'); //setting the stack to the first element in the maze.
     while (!s.isEmpty)
     {
@@ -40,13 +40,13 @@ void Maze::createMaze()
         temp = s.pop();
         temp->getData(curr_h, curr_w);    //updating the curr_h and curr_w by ref
         this->maze[curr_h][curr_w] = ' '; //mark the point we popped from the stack
-        if (hasNeighbors(curr_h, curr_w))
+        if (hasNeighbors(curr_h, curr_w,neighbor_h,neighbor_w))
         {
         }
     }
 }
 
-bool Maze::hasNeighbors(int curr_h, int curr_w) //TODO
+bool Maze::hasNeighbors(int curr_h, int curr_w,int& neighbor_h,int& neighbor_w) //TODO
 {
 }
 
