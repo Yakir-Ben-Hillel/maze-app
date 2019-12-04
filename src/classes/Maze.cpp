@@ -46,7 +46,7 @@ void Maze::createMaze()
     }
 }
 
-bool Maze::hasNeighbors(int curr_h, int curr_w,int& neighbor_h,int& neighbor_w) //TODO
+bool Maze::hasNeighbors(int curr_h, int curr_w,int& neighbor_h,int& neighbor_w) 
 {
     srand((unsigned)time(NULL));
     int x=rand();

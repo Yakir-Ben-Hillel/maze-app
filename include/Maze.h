@@ -15,14 +15,14 @@ void createMaze();//TODO
 void solutionMaze();//TODO
 void setMaze(char** maze);
 char** getMaze() const;
-friend bool ifValidMaze(char** maze,int h,int w);//TODO
+friend bool ifValidMaze(char** maze,int h,int w);
 int gethight() const;
 int getwidth() const;
 friend void showMaze(char** maze,int h,int w);
 private:
 char** maze;
 int h,w;
-bool hasNeighbors(int curr_h,int curr_w,int& neighbor_h,int& neighbor_w);//TODO
+bool hasNeighbors(int curr_h,int curr_w,int& neighbor_h,int& neighbor_w);
 };
 
 #endif
