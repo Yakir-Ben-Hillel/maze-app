@@ -48,6 +48,37 @@ void Maze::createMaze()
 
 bool Maze::hasNeighbors(int curr_h, int curr_w,int& neighbor_h,int& neighbor_w) //TODO
 {
+    srand((unsigned)time(NULL));
+    int x=rand();
+    if(x%4==0&&curr_h-2>0&&this->getMaze[curr_h-2][curr_w]!='$')
+    {
+        neighbor_h=curr_h-2;
+        neighbor_w=curr_w;
+        this->maze[curr_h-1][curr_w]=' ';//breaking the wall between the neighbors
+        return true;
+    }
+    else if(x%4==1&&curr_w-2>0&&this->maze[curr_h][curr_w-2]!='$')
+    {
+        neighbor_h=curr_h;
+        neighbor_w=curr_w-2;
+        this->maze[curr_h][curr_w-1]=' ';//breaking the wall between the neighbors
+        return true;
+    }
+    else if(x%4==2&&curr_h+2<this->h-1&&this->maze[curr_h+2][curr_w]!='$')
+    {
+        neighbor_h=curr_h+2;
+        neighbor_w=curr_w;
+        this->maze[curr_h+1][curr_w]=' ';//breaking the wall between the neighbors
+        return true;
+    }
+    else if(x%4==3&&curr_w+2<this->w-1&&this->maze[curr_h][curr_w+2]!='$')
+    {
+        neighbor_h=curr_h;
+        neighbor_w=curr_w+2;
+        this->maze[curr_h][curr_w+1]=' ';//breaking the wall between the neighbors
+        return true;
+    }
+    return false;
 }
 
 void Maze::setMaze(char **maze)
