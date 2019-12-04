@@ -18,7 +18,7 @@ char** getMaze() const;
 friend bool ifValidMaze(char** maze,int h,int w);//TODO
 int gethight() const;
 int getwidth() const;
-friend void showMaze(const char** maze,int h,int w);
+friend void showMaze(char** maze,int h,int w);
 private:
 char** maze;
 int h,w;

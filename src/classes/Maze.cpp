@@ -28,7 +28,7 @@ int Maze::getwidth() const
     return this->w;
 }
 
-/*void Maze::createMaze()
+void Maze::createMaze()
 {
     //in the constractor we make the full maze so,we already know that the member from the main who call this function is a full maze.
     Stack s;
@@ -48,7 +48,7 @@ int Maze::getwidth() const
 
 bool Maze::hasNeighbors(int curr_h, int curr_w) //TODO
 {
-}*/
+}
 
 void Maze::setMaze(char **maze)
 {

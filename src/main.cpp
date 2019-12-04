@@ -34,6 +34,7 @@ int main()
 	}
 	else //if (x == 2)insert the user's maze
 	{
+		cout<<"insert your maze: "<<endl;
 		char **temp = new char *[h];
 		for (int i = 0; i < h; i++)
 		{
