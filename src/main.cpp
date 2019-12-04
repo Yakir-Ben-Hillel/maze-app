@@ -52,6 +52,7 @@ int main()
 			exit(1);
 		}
 	}
+	system("pause");
 }
 
 void Mfree(char** arr,int h)

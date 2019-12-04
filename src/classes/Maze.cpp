@@ -2,7 +2,7 @@
 
 //if maze=nullptr it means we need to create a default maze and then use the function create maze to do a random maze
 //if maze!=nullptr it means the user gave us its own maze and we should set the maze to this maze.
-Maze::Maze(int h, int w, char **maze):h(h),w(w)
+Maze::Maze(int h, int w, char **maze) : h(h), w(w)
 {
     setMaze(maze);
 }
@@ -28,7 +28,7 @@ int Maze::getwidth() const
     return this->w;
 }
 
-void Maze::createMaze()
+/*void Maze::createMaze()
 {
     //in the constractor we make the full maze so,we already know that the member from the main who call this function is a full maze.
     Stack s;
@@ -46,49 +46,48 @@ void Maze::createMaze()
     }
 }
 
-bool Maze::hasNeighbors(int curr_h, int curr_w)//TODO
+bool Maze::hasNeighbors(int curr_h, int curr_w) //TODO
 {
-}
+}*/
 
 void Maze::setMaze(char **maze)
 {
-    this->maze=new char*[this->h];
-    if (maze == nullptr)//creating a default maze and then use the function createMaze to pick a random maze
-    {
-       for(int i=0;i<this->h;i++)
-       {
-           this->maze[i]=new char[this->w];
-           if(i%2==0)
-           {
-               for(int j=0;j<w;j++)
-               {
-                   this->maze[i][j]='*';
-               }
-           }
-           else
-           {
-               for(int k=0;k<this->w;k++)
-               {
-                   if(k%2==0)
-                   {
-                       this->maze[i][k]='*';
-                   }
-                   else
-                   {
-                       this->maze[i][k]=' ';
-                   }
-                   
-               }
-           }
-           this->maze[i][w]='\0';
-       }
-       this->maze[1][0]=this->maze[h-2][w-1]=' ';
-    }
-    else//put the user's maze in the member maze.
+    this->maze = new char *[this->h];
+    if (maze == nullptr) //creating a default maze and then use the function createMaze to pick a random maze
     {
         for (int i = 0; i < this->h; i++)
         {
-            this->maze[i]=new char[this->w];
+            this->maze[i] = new char[this->w];
+            if (i % 2 == 0)
+            {
+                for (int j = 0; j < w; j++)
+                {
+                    this->maze[i][j] = '*';
+                }
+            }
+            else
+            {
+                for (int k = 0; k < this->w; k++)
+                {
+                    if (k % 2 == 0)
+                    {
+                        this->maze[i][k] = '*';
+                    }
+                    else
+                    {
+                        this->maze[i][k] = ' ';
+                    }
+                }
+            }
+            this->maze[i][w] = '\0';
+        }
+        this->maze[1][0] = this->maze[h - 2][w - 1] = ' ';
+    }
+    else //put the user's maze in the member maze.
+    {
+        for (int i = 0; i < this->h; i++)
+        {
+            this->maze[i] = new char[this->w];
             for (int j = 0; j < this->w; j++)
             {
                 this->maze[i][j] = maze[i][j];
@@ -97,7 +96,7 @@ void Maze::setMaze(char **maze)
     }
 }
 
-void showMaze(char **maze, int h, int w) 
+void showMaze(char **maze, int h, int w)
 {
     for (int i = 0; i < h; i++)
     {
@@ -107,4 +106,33 @@ void showMaze(char **maze, int h, int w)
         }
         cout << endl;
     }
+}
+
+bool ifValidMaze(char **maze, int h, int w)
+{
+    if (h % 2 == 0 || w % 2 == 0) //the maze height or width must be odd
+        return false;
+    else if (maze[1][0] != ' ' || maze[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
+        return false;
+    else //the maze must have a path from the enter to the exit from the entrance
+    {
+        //this loop check if all the walls are in the maze
+        for (int i = 0; i < h; i++)
+        {
+            //the next two ifs check if the left and right walls are exist.
+            if (maze[i][0] != '*' && i != 1)
+                return false;
+            if (maze[i][w - 1] != '*' && i != h - 2)
+                return false;
+            //this loop checks if the top and the bottom walls are exist.
+            for (int j = 0; j < w; j++)
+            {
+                if (maze[0][j] != '*')
+                    return false;
+                if (maze[h - 1][j] != '*')
+                    return false;
+            }
+        }
+    }
+    return true;//if all the checks didn't give false the maze is valid.
 }
