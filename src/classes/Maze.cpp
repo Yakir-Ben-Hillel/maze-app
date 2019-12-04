@@ -78,7 +78,7 @@ bool Maze::hasNeighbors(int curr_h, int curr_w,int& neighbor_h,int& neighbor_w)
         this->maze[curr_h][curr_w+1]=' ';//breaking the wall between the neighbors
         return true;
     }
-    return false;
+    return false;//if non of the ifs had happened the current point in the maze has no neighbors
 }
 
 void Maze::setMaze(char **maze)
