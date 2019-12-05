@@ -28,7 +28,9 @@ int main()
 		cin.ignore(256, '\n');
 		if ((h > 25 || w > 80) || (h < 0 || w < 0))
 			cout << "invalid values please try again" << endl;
-	} while ((h > 25 || w > 80) || (h < 0 || w < 0));
+		if (h % 2 == 0 || w % 2 == 0)
+			cout << "invalid values please try again" << endl;
+	} while ((h > 25 || w > 80) || (h < 0 || w < 0) || (h % 2 == 0 || w % 2 == 0));
 	if (x == 1) //making a random maze
 	{
 		Maze maze(h, w); //creating the starting maze in the constractor
