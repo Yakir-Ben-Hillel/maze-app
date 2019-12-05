@@ -42,6 +42,8 @@ void Maze::createMaze()
         this->maze[curr_h][curr_w] = ' '; //mark the point we popped from the stack
         if (hasNeighbors(curr_h, curr_w,neighbor_h,neighbor_w))
         {
+            s.push(curr_h,curr_w,' ');
+            s.push(neighbor_h,neighbor_w,'$');
         }
     }
 }
