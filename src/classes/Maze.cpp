@@ -39,11 +39,10 @@ void Maze::createMaze()
         Node *temp;
         temp = s.pop();
         temp->getData(curr_h, curr_w);    //updating the curr_h and curr_w by ref
-        this->maze[curr_h][curr_w] = ' '; //mark the point we popped from the stack
         if (hasNeighbors(curr_h, curr_w, neighbor_h, neighbor_w))
         {
             s.push(curr_h, curr_w, ' ');
-            s.push(neighbor_h, neighbor_w, '$');
+            s.push(neighbor_h, neighbor_w, '$');//mark the neighbor to know that we visit there already.
         }
     }
 }
@@ -141,11 +140,11 @@ void showMaze(char **maze, int h, int w)
     }
 }
 
-bool ifValidMaze(char **maze, int h, int w)
+bool ifValidMaze(char **maze_to_check, int h, int w)
 {
     if (h % 2 == 0 || w % 2 == 0) //the maze height or width must be odd
         return false;
-    else if (maze[1][0] != ' ' || maze[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
+    else if (maze_to_check[1][0] != ' ' || maze_to_check[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
         return false;
     else //the maze must have a path from the enter to the exit from the entrance
     {
@@ -153,16 +152,16 @@ bool ifValidMaze(char **maze, int h, int w)
         for (int i = 0; i < h; i++)
         {
             //the next two ifs check if the left and right walls are exist.
-            if (maze[i][0] != '*' && i != 1)
+            if (maze_to_check[i][0] != '*' && i != 1)
                 return false;
-            if (maze[i][w - 1] != '*' && i != h - 2)
+            if (maze_to_check[i][w - 1] != '*' && i != h - 2)
                 return false;
             //this loop checks if the top and the bottom walls are exist.
             for (int j = 0; j < w; j++)
             {
-                if (maze[0][j] != '*')
+                if (maze_to_check[0][j] != '*')
                     return false;
-                if (maze[h - 1][j] != '*')
+                if (maze_to_check[h - 1][j] != '*')
                     return false;
             }
         }
