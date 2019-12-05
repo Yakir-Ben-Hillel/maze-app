@@ -67,7 +67,7 @@ void M_free(char **arr, int h)
 {
 	for (int i = 0; i < h; i++)
 	{
-		delete[] arr[h];
+		delete[] arr[i];
 	}
 	delete[] arr;
 }
