@@ -14,19 +14,47 @@ bool Stack::isEmpty()
 }
 void Stack::push(int h, int w, char ch)
 {
-    Node* temp=this->top;
-    top = new Node(h,w,ch,temp);
+    Node *temp = this->top;
+    top = new Node(h, w, ch, temp);
+}
+bool Stack::searchNodeInStack(int given_h, int given_w)
+{
+    bool flag = false;
+    Stack temp;
+    Node *curr = nullptr;
+    while (!(this->isEmpty()) && flag == false)
+    {
+        Node *curr = this->top;
+        if (given_h == curr->h && given_w == curr->w)
+        {
+            if (curr->ch == '$')
+            {
+                flag = true;
+            }
+        }
+        else
+        {
+            curr = this->pop();
+            temp.push(curr->h, curr->w, curr->ch);
+        }
+    }
+    while (!temp.isEmpty())
+    {
+        curr = temp.pop();
+        this->push(curr->h, curr->w, curr->ch);
+    }
+    return flag;
 }
 Node *Stack::pop()
 {
     if (Stack::isEmpty())
     {
-        cout<<"Error stack is underflow!"<<endl;
+        cout << "Error stack is underflow!" << endl;
         exit(1);
     }
-    Node* temp=top;
-    top=top->next;
-    return(temp);//in temp we need to take the h,w and ch and then delete that node.
+    Node *temp = top;
+    top = top->next;
+    return (temp); //in temp we need to take the h,w and ch and then delete that node.
 }
 Node *Stack::Top() const
 {

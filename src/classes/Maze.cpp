@@ -34,52 +34,90 @@ void Maze::createMaze()
     Stack s;
     int curr_h, curr_w, neighbor_h, neighbor_w;
     s.push(1, 1, ' '); //setting the stack to the first element in the maze.
+    Node *temp;
     while (!s.isEmpty())
     {
-        Node *temp;
         temp = s.pop();
-        temp->getData(curr_h, curr_w);    //updating the curr_h and curr_w by ref
-        if (hasNeighbors(curr_h, curr_w, neighbor_h, neighbor_w))
+        temp->getData(curr_h, curr_w); //updating the curr_h and curr_w by ref
+        if (curr_h == h - 2 && curr_w + 1 == w - 1)
         {
-            s.push(curr_h, curr_w, ' ');
-            s.push(neighbor_h, neighbor_w, '$');//mark the neighbor to know that we visit there already.
+            s.makeEmpty();
+            break;
+        }
+        if (hasNeighbors(curr_h, curr_w, neighbor_h, neighbor_w, s))
+        {
+            s.push(curr_h, curr_w, '$');
+            s.push(neighbor_h, neighbor_w, ' '); //mark the neighbor to know that we visit there already.
+            //Staging to next block.
         }
     }
 }
 
-bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w)
+bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w, Stack s)
 {
-    srand((unsigned)time(NULL));
-    int x = rand();
-    if (x % 4 == 0 && curr_h - 2 > 0 && this->maze[curr_h - 2][curr_w] != '$')
+    int arr[5]; //The last one is for the option that no matter what we go back a step.
+    int counter = 0;
+    for (int i = 0; i < 4; i++)
     {
+        if (i == 0 && curr_h - 2 > 0 && !s.searchNodeInStack(curr_h - 2, curr_w))
+        {
+            arr[counter] = i;
+            counter++;
+        }
+        else if (i == 1 && curr_w - 2 > 0 && !s.searchNodeInStack(curr_h, curr_w - 2))
+        {
+            arr[counter] = i;
+            counter++;
+        }
+        else if (i == 2 && curr_h + 2 < this->h - 1 && !s.searchNodeInStack(curr_h + 2, curr_w))
+        {
+            arr[counter] = i;
+            counter++;
+        }
+        else if (i == 3 && curr_w + 2 < this->w - 1 && !s.searchNodeInStack(curr_h, curr_w + 2))
+        {
+            arr[counter] = i;
+            counter++;
+        }
+    }
+
+    if (counter == 0)
+        return false; //if non of the ifs had happened the current point in the maze has no neighbors
+
+    int index;
+    s.isEmpty() ? (index = rand() % counter) : (index = rand() % (counter + 1));
+    int chosen = arr[index];
+    switch (chosen)
+    {
+    case 0:
         neighbor_h = curr_h - 2;
         neighbor_w = curr_w;
         this->maze[curr_h - 1][curr_w] = ' '; //breaking the wall between the neighbors
         return true;
-    }
-    else if (x % 4 == 1 && curr_w - 2 > 0 && this->maze[curr_h][curr_w - 2] != '$')
-    {
+        break;
+    case 1:
         neighbor_h = curr_h;
         neighbor_w = curr_w - 2;
         this->maze[curr_h][curr_w - 1] = ' '; //breaking the wall between the neighbors
         return true;
-    }
-    else if (x % 4 == 2 && curr_h + 2 < this->h - 1 && this->maze[curr_h + 2][curr_w] != '$')
-    {
+        break;
+    case 2:
         neighbor_h = curr_h + 2;
         neighbor_w = curr_w;
         this->maze[curr_h + 1][curr_w] = ' '; //breaking the wall between the neighbors
         return true;
-    }
-    else if (x % 4 == 3 && curr_w + 2 < this->w - 1 && this->maze[curr_h][curr_w + 2] != '$')
-    {
+        break;
+    case 3:
         neighbor_h = curr_h;
         neighbor_w = curr_w + 2;
         this->maze[curr_h][curr_w + 1] = ' '; //breaking the wall between the neighbors
         return true;
+        break;
+
+    default:
+        return false; //if non of the ifs had happened the current point in the maze has no neighbors
+        break;
     }
-    return false; //if non of the ifs had happened the current point in the maze has no neighbors
 }
 
 void Maze::setMaze(char **maze)
@@ -139,4 +177,10 @@ void Maze::showMaze()
         cout << endl;
     }
 }
-
+bool Maze::isFinished(int curr_h, int curr_w)
+{
+    if (curr_h == this->h - 2 && curr_w == w - 1)
+        return true;
+    else
+        return false;
+}

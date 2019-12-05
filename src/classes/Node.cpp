@@ -8,6 +8,7 @@ Node::~Node()
 {
     this->next = nullptr;
 }
+
 void Node::insertAfter(Node *newNode)
 {
     newNode->next = this->next;

@@ -17,11 +17,12 @@ void setMaze(char** maze);
 char** getMaze() const;
 int gethight() const;
 int getwidth() const;
+bool isFinished(int curr_h,int curr_w);
 void showMaze();
 private:
 char** maze;
 int h,w;
-bool hasNeighbors(int curr_h,int curr_w,int& neighbor_h,int& neighbor_w);
+bool hasNeighbors(int curr_h,int curr_w,int& neighbor_h,int& neighbor_w,Stack s);
 };
 
 #endif
