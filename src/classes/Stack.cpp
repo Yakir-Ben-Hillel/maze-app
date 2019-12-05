@@ -24,7 +24,7 @@ Node *Stack::pop()
         cout<<"Error stack is underflow!"<<endl;
         exit(1);
     }
-    Node* temp;
+    Node* temp=top;
     top=top->next;
     return(temp);//in temp we need to take the h,w and ch and then delete that node.
 }
