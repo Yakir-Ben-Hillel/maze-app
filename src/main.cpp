@@ -1,6 +1,6 @@
 #include "../include/Maze.h"
 
-void Mfree(char** arr,int h);
+void M_free(char** arr,int h);
 
 int main()
 {
@@ -44,7 +44,7 @@ int main()
 		if (ifValidMaze(temp, h, w)==true)//checks if the user's maze is valid. //TODO
 		{
 			Maze maze(h, w, temp);
-			Mfree(temp,h);
+			M_free(temp,h);
 			showMaze(maze.getMaze(), h, w);//show why a friend function does not work
 		}
 		else
@@ -56,7 +56,7 @@ int main()
 	system("pause");
 }
 
-void Mfree(char** arr,int h)
+void M_free(char** arr,int h)
 {
   for(int i=0;i<h;i++)
   {
