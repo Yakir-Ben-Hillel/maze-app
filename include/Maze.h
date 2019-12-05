@@ -15,10 +15,9 @@ void createMaze();//TODO
 void solutionMaze();//TODO
 void setMaze(char** maze);
 char** getMaze() const;
-friend bool ifValidMaze(char** maze_to_check,int h,int w);
 int gethight() const;
 int getwidth() const;
-friend void showMaze(char** maze,int h,int w);
+void showMaze();
 private:
 char** maze;
 int h,w;

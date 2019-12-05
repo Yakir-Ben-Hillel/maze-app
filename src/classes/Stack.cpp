@@ -14,7 +14,8 @@ bool Stack::isEmpty()
 }
 void Stack::push(int h, int w, char ch)
 {
-    top = new Node(this->top->h, this->top->w, this->top->ch, this->top->next);
+    Node* temp=this->top;
+    top = new Node(h,w,ch,temp);
 }
 Node *Stack::pop()
 {

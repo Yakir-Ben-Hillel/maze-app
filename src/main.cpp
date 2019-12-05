@@ -1,6 +1,7 @@
 #include "../include/Maze.h"
 
 void M_free(char** arr,int h);
+bool ifValidMaze(char** maze_to_check,int h,int w);
 
 int main()
 {
@@ -30,7 +31,7 @@ int main()
 	{
 		Maze maze(h, w);//creating the starting maze in the constractor
 		maze.createMaze(); //TODO
-		showMaze(maze.getMaze(), h, w);
+		maze.showMaze();
 	}
 	else //if (x == 2)insert the user's maze
 	{
@@ -45,7 +46,7 @@ int main()
 		{
 			Maze maze(h, w, temp);
 			M_free(temp,h);
-			showMaze(maze.getMaze(), h, w);//show why a friend function does not work
+			maze.showMaze();//show why a friend function does not work
 		}
 		else
 		{
@@ -63,4 +64,33 @@ void M_free(char** arr,int h)
 	  delete[] arr[h];
   }
   delete[] arr;
+}
+
+bool ifValidMaze(char **maze_to_check, int h, int w)
+{
+    if (h % 2 == 0 || w % 2 == 0) //the maze height or width must be odd
+        return false;
+    else if (maze_to_check[1][0] != ' ' || maze_to_check[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
+        return false;
+    else //the maze must have a path from the enter to the exit from the entrance
+    {
+        //this loop check if all the walls are in the maze
+        for (int i = 0; i < h; i++)
+        {
+            //the next two ifs check if the left and right walls are exist.
+            if (maze_to_check[i][0] != '*' && i != 1)
+                return false;
+            if (maze_to_check[i][w - 1] != '*' && i != h - 2)
+                return false;
+            //this loop checks if the top and the bottom walls are exist.
+            for (int j = 0; j < w; j++)
+            {
+                if (maze_to_check[0][j] != '*')
+                    return false;
+                if (maze_to_check[h - 1][j] != '*')
+                    return false;
+            }
+        }
+        return true; //if all the checks didn't give false the maze is valid.
+    }
 }
