@@ -34,7 +34,7 @@ void Maze::createMaze()
     Stack s;
     int curr_h, curr_w, neighbor_h, neighbor_w;
     s.push(1, 1, ' '); //setting the stack to the first element in the maze.
-    while (!s.isEmpty)
+    while (!s.isEmpty())
     {
         Node *temp;
         temp = s.pop();
@@ -52,7 +52,7 @@ bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w
 {
     srand((unsigned)time(NULL));
     int x = rand();
-    if (x % 4 == 0 && curr_h - 2 > 0 && this->getMaze[curr_h - 2][curr_w] != '$')
+    if (x % 4 == 0 && curr_h - 2 > 0 && this->maze[curr_h - 2][curr_w] != '$')
     {
         neighbor_h = curr_h - 2;
         neighbor_w = curr_w;
