@@ -17,6 +17,11 @@ void Stack::push(int h, int w, char ch)
     Node *temp = this->top;
     top = new Node(h, w, ch, temp);
 }
+void Stack::push(Node &node)
+{
+    Node *temp = this->top;
+    top = new Node(node);
+}
 bool Stack::searchNodeInStack(int given_h, int given_w)
 {
     bool flag = false;
@@ -35,13 +40,13 @@ bool Stack::searchNodeInStack(int given_h, int given_w)
         else
         {
             curr = this->pop();
-            temp.push(curr->h, curr->w, curr->ch);
+            temp.push(*curr);
         }
     }
     while (!temp.isEmpty())
     {
         curr = temp.pop();
-        this->push(curr->h, curr->w, curr->ch);
+        this->push(*curr);
     }
     return flag;
 }
@@ -62,7 +67,7 @@ Node *Stack::Top() const
 }
 void Stack::makeEmpty()
 {
-    Node *temp;
+    Node *temp=nullptr;
     while (this->top != nullptr)
     {
         temp = top;

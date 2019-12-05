@@ -45,7 +45,9 @@ void Maze::createMaze()
             s.push(neighbor_h, neighbor_w, ' '); //mark the neighbor to know that we visit there already.
             //Staging to next block.
         }
-         if (curr_h == h - 2 && curr_w== w - 2)
+        else
+            delete temp;
+        if (curr_h == h - 2 && curr_w == w - 2)
         {
             s.makeEmpty();
         }
