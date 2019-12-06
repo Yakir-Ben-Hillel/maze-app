@@ -11,7 +11,7 @@ public:
     bool isEmpty();
     bool searchNodeInStack(int given_h, int given_w);
     void push(int h, int w, char ch);
-    void push(Node &node);
+    void push(Node* node);
     Node *pop();
     Node *Top() const;
     void makeEmpty();

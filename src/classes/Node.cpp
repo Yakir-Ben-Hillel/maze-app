@@ -4,10 +4,10 @@ Node::Node(int h, int w, char ch, Node *next) : h(h), w(w), ch(ch)
 {
     this->next = next;
 }
-// Node::~Node()
-// {
-//     this->next = nullptr;
-// }
+Node::~Node()
+{
+    this->next = nullptr;
+}
 Node::Node(Node &node)
 {
     setData(node.h, node.w);

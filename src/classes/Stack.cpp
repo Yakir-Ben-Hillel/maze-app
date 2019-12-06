@@ -17,10 +17,10 @@ void Stack::push(int h, int w, char ch)
     Node *temp = this->top;
     top = new Node(h, w, ch, temp);
 }
-void Stack::push(Node &node)
+void Stack::push(Node* other)
 {
-    Node *temp = this->top;
-    top = new Node(node);
+    other->next=this->top;
+    this->top=other;
 }
 bool Stack::searchNodeInStack(int given_h, int given_w)
 {
@@ -40,13 +40,13 @@ bool Stack::searchNodeInStack(int given_h, int given_w)
         else
         {
             curr = this->pop();
-            temp.push(*curr);
+            temp.push(curr);
         }
     }
     while (!temp.isEmpty())
     {
         curr = temp.pop();
-        this->push(*curr);
+        this->push(curr);
     }
     temp.makeEmpty();
     return flag;
