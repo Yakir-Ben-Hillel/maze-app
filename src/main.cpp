@@ -2,6 +2,7 @@
 
 void M_free(char **arr, int h);
 bool ifValidMaze(char **maze_to_check, int h, int w);
+void changeDollars(int h, int w, char **maze);
 
 int main()
 {
@@ -34,8 +35,10 @@ int main()
 	{
 		Maze maze(h, w); //creating the starting maze in the constractor
 		maze.showMaze();
+
 		maze.createMaze();
 		cout << "Finished Maze" << endl;
+		changeDollars(h, w, maze.getMaze());
 		maze.showMaze();
 	}
 	else //if (x == 2)insert the user's maze
@@ -97,5 +100,16 @@ bool ifValidMaze(char **maze_to_check, int h, int w)
 			}
 		}
 		return true; //if all the checks didn't give false the maze is valid.
+	}
+}
+void changeDollars(int h, int w, char **maze)
+{
+	for (int i = 1; i < h; i++)
+	{
+		for (int j = 0; j < w; j++)
+		{
+			if (maze[i][j] == '$')
+				maze[i][j] = ' ';
+		}
 	}
 }

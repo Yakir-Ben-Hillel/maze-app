@@ -39,48 +39,65 @@ void Maze::createMaze()
     {
         temp = s.pop();
         temp->getData(curr_h, curr_w); //updating the curr_h and curr_w by ref
-        if (hasNeighbors(curr_h, curr_w, neighbor_h, neighbor_w, *temp))
+        this->maze[curr_h][curr_w] = ' ';
+        if (hasNeighbors(curr_h, curr_w, neighbor_h, neighbor_w, &s))
         {
             s.push(temp);
+            this->maze[curr_h][curr_w] = '$';
             s.push(neighbor_h, neighbor_w); //mark the neighbor to know that we visit there already.
             //Staging to next block.
         }
-        else//this point does not have a neighbors so we free the allocated memory
-            delete temp;
-        if (curr_h == h - 2 && curr_w == w - 2)//if we got to the point near to the exit it means we have a path from the start to the end
+        else //this point does not have a neighbors so we free the allocated memory
+        {
+            maze[curr_h][curr_w] = '$';
+            // Node *next = temp->getNext();
+            // if (next)
+            // {
+            //     int before_h, before_w;
+            //     next->getData(before_h, before_w);
+            //     if (curr_h - 2 == before_h)
+            //         maze[curr_h - 2][curr_w] = '$';
+            //     else if (curr_h + 2 == before_h)
+            //         maze[curr_h + 2][curr_w] = '$';
+            //     else if (curr_w - 2 == before_w)
+            //         maze[curr_h][curr_w - 2] = '$';
+            //     else if (curr_w + 2 == before_w)
+            //         maze[curr_h][curr_w + 2] = '$';
+            // }
+        }
+        if (curr_h == h - 2 && curr_w == w - 2) //if we got to the point near to the exit it means we have a path from the start to the end
         {
             s.makeEmpty(); //we got to the exit so we free the stack and finish the building of the maze
         }
+        cout << "Maze at this step:" << endl;
+        showMaze();
     }
 }
 
-bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w, Node &curr)
+bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w, Stack *s)
 {
     int arr[5]; //The last one is for the option that no matter what we go back a step.
     int counter = 0;
 
-    for (int i = 0; i < 4; i++)
+    if (curr_h - 2 > 0 && this->maze[curr_h - 2][curr_w] != '$')
     {
-        if (i == 0 && curr_h - 2 > 0 && !curr.getNeighborPlace(0))
-        {
-            arr[counter] = i;
-            counter++;
-        }
-        else if (i == 1 && curr_w - 2 > 0 && !curr.getNeighborPlace(1))
-        {
-            arr[counter] = i;
-            counter++;
-        }
-        else if (i == 2 && curr_h + 2 < this->h - 1 && !curr.getNeighborPlace(2))
-        {
-            arr[counter] = i;
-            counter++;
-        }
-        else if (i == 3 && curr_w + 2 < this->w - 1 && !curr.getNeighborPlace(3))
-        {
-            arr[counter] = i;
-            counter++;
-        }
+        arr[counter] = 0;
+        counter++;
+    }
+    if (curr_w - 2 > 0 && this->maze[curr_h][curr_w - 2] != '$')
+    {
+        arr[counter] = 1;
+        counter++;
+    }
+    if (curr_h + 2 < this->h - 1 && this->maze[curr_h + 2][curr_w] != '$')
+    {
+        arr[counter] = 2;
+        counter++;
+    }
+    if (curr_w + 2 < this->w - 1 && this->maze[curr_h][curr_w + 2] != '$')
+    {
+        arr[counter] = 3;
+        counter++;
     }
 
     if (counter == 0)
@@ -95,28 +112,28 @@ bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w
         neighbor_h = curr_h - 2;
         neighbor_w = curr_w;
         this->maze[curr_h - 1][curr_w] = ' '; //breaking the wall between the neighbors
-        curr.setNeighborPlace(0);             //it means that we visit this neighbor and set it to be true
+        //curr.setNeighborPlace(0);             //it means that we visit this neighbor and set it to be true
         return true;
         break;
     case 1:
         neighbor_h = curr_h;
         neighbor_w = curr_w - 2;
         this->maze[curr_h][curr_w - 1] = ' '; //breaking the wall between the neighbors
-        curr.setNeighborPlace(1);
+                                              // curr.setNeighborPlace(1);
         return true;
         break;
     case 2:
         neighbor_h = curr_h + 2;
         neighbor_w = curr_w;
         this->maze[curr_h + 1][curr_w] = ' '; //breaking the wall between the neighbors
-        curr.setNeighborPlace(2);
+        //curr.setNeighborPlace(2);
         return true;
         break;
     case 3:
         neighbor_h = curr_h;
         neighbor_w = curr_w + 2;
         this->maze[curr_h][curr_w + 1] = ' '; //breaking the wall between the neighbors
-        curr.setNeighborPlace(3);
+                                              // curr.setNeighborPlace(3);
         return true;
         break;
 
