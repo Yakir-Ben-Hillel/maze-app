@@ -34,8 +34,8 @@ int main()
 	if (x == 1) //making a random maze
 	{
 		Maze maze(h, w); //creating the starting maze in the constractor
+		cout << "Maze Skeleton:" << endl;
 		maze.showMaze();
-
 		maze.createMaze();
 		cout << "Finished Maze" << endl;
 		changeDollars(h, w, maze.getMaze());

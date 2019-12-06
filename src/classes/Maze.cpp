@@ -40,7 +40,7 @@ void Maze::createMaze()
         temp = s.pop();
         temp->getData(curr_h, curr_w); //updating the curr_h and curr_w by ref
         this->maze[curr_h][curr_w] = ' ';
-        if (hasNeighbors(curr_h, curr_w, neighbor_h, neighbor_w, &s))
+        if (hasNeighbors(curr_h, curr_w, neighbor_h, neighbor_w))
         {
             s.push(temp);
             this->maze[curr_h][curr_w] = '$';
@@ -50,31 +50,16 @@ void Maze::createMaze()
         else //this point does not have a neighbors so we free the allocated memory
         {
             maze[curr_h][curr_w] = '$';
-            // Node *next = temp->getNext();
-            // if (next)
-            // {
-            //     int before_h, before_w;
-            //     next->getData(before_h, before_w);
-            //     if (curr_h - 2 == before_h)
-            //         maze[curr_h - 2][curr_w] = '$';
-            //     else if (curr_h + 2 == before_h)
-            //         maze[curr_h + 2][curr_w] = '$';
-            //     else if (curr_w - 2 == before_w)
-            //         maze[curr_h][curr_w - 2] = '$';
-            //     else if (curr_w + 2 == before_w)
-            //         maze[curr_h][curr_w + 2] = '$';
-            // }
+            delete temp;
         }
         if (curr_h == h - 2 && curr_w == w - 2) //if we got to the point near to the exit it means we have a path from the start to the end
         {
             s.makeEmpty(); //we got to the exit so we free the stack and finish the building of the maze
         }
-        cout << "Maze at this step:" << endl;
-        showMaze();
     }
 }
 
-bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w, Stack *s)
+bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w)
 {
     int arr[5]; //The last one is for the option that no matter what we go back a step.
     int counter = 0;
