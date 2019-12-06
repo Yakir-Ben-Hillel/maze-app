@@ -8,7 +8,7 @@ Node::~Node()
 {
     this->next = nullptr;
 }
-Node::Node(Node &node)
+Node::Node(const Node &node)
 {
     setData(node.h, node.w);
     setChar(node.ch);

@@ -11,8 +11,8 @@ public:
 friend class Stack;
 Node()=delete;
 Node(int h,int w,char ch,Node* next=nullptr);
-Node(Node& other);//the default copy constractor.
-// ~Node();
+Node(const Node& other);
+~Node();
 void insertAfter(Node* newNode);
 Node* deleteAfter();
 void setData(int h,int w);
