@@ -9,10 +9,8 @@ const int max_w=80;
 class Maze{
 public:
 Maze(int h=max_h,int w=max_w,char** maze=nullptr);
-Maze(Maze& other)=default;
 ~Maze();
-void createMaze();//TODO
-void solutionMaze();//TODO
+void createMaze();
 void setMaze(char** maze);
 char** getMaze() const;
 int gethight() const;

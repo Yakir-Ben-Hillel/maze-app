@@ -3,6 +3,10 @@
 Node::Node(int h, int w, char ch, Node *next) : h(h), w(w), ch(ch)
 {
     this->next = next;
+    this->neighbors[0]=false;
+    this->neighbors[1]=false;
+    this->neighbors[2]=false;
+    this->neighbors[3]=false;
 }
 Node::~Node()
 {
@@ -13,6 +17,10 @@ Node::Node(const Node &node)
     setData(node.h, node.w);
     setChar(node.ch);
     setNext(node.next);
+    this->neighbors[0]=node.neighbors[0];
+    this->neighbors[1]=node.neighbors[1];
+    this->neighbors[2]=node.neighbors[2];
+    this->neighbors[3]=node.neighbors[3];
 }
 void Node::insertAfter(Node *newNode)
 {
