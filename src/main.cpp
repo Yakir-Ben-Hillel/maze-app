@@ -5,7 +5,6 @@ bool ifValidMaze(char **maze_to_check, int h, int w);
 
 int main()
 {
-
 	srand((unsigned)time(NULL));
 	//the building main for the part of creating maze
 	//TODO:: making the solution of the maze by queue and build it's main parts

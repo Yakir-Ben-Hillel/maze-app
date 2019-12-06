@@ -48,6 +48,7 @@ bool Stack::searchNodeInStack(int given_h, int given_w)
         curr = temp.pop();
         this->push(*curr);
     }
+    temp.makeEmpty();
     return flag;
 }
 Node *Stack::pop()
