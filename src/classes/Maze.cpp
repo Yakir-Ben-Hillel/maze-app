@@ -176,10 +176,3 @@ void Maze::showMaze()
         cout << endl;
     }
 }
-bool Maze::isFinished(int curr_h, int curr_w)
-{
-    if (curr_h == this->h - 2 && curr_w == w - 1)
-        return true;
-    else
-        return false;
-}

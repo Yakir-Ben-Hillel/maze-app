@@ -17,7 +17,6 @@ void setMaze(char** maze);
 char** getMaze() const;
 int gethight() const;
 int getwidth() const;
-bool isFinished(int curr_h,int curr_w);
 void showMaze();
 private:
 char** maze;
