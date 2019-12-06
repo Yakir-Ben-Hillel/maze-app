@@ -133,7 +133,7 @@ void Maze::setMaze(char **maze)
     {
         for (int i = 0; i < this->h; i++)
         {
-            this->maze[i] = new char[this->w];
+            this->maze[i] = new char[this->w+1];
             if (i % 2 == 0)
             {
                 for (int j = 0; j < w; j++)

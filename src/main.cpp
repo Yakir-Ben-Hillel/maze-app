@@ -44,8 +44,9 @@ int main()
 		char **temp = new char *[h];
 		for (int i = 0; i < h; i++)
 		{
-			temp[i] = new char[w];
-			cin.getline(temp[i], w);
+			temp[i] = new char[w+1];
+			cin.getline(temp[i],w);
+			temp[i][w] = '\0';
 		}
 		if (ifValidMaze(temp, h, w) == true) //checks if the user's maze is valid. //TODO
 		{
