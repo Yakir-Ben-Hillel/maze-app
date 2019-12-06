@@ -41,7 +41,7 @@ void Maze::createMaze()
         temp->getData(curr_h, curr_w); //updating the curr_h and curr_w by ref
         if (hasNeighbors(curr_h, curr_w, neighbor_h, neighbor_w, *temp))
         {
-            s.push(temp);
+            s.push(temp);//we push back the current point to the stack
             s.push(neighbor_h, neighbor_w); //mark the neighbor to know that we visit there already.
             //Staging to next block.
         }
