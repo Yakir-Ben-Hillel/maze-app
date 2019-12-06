@@ -70,8 +70,8 @@ void Stack::makeEmpty()
     Node *temp;
     while (this->top != nullptr)
     {
-        temp = top;
-        top = top->next;
-        delete temp;
+        temp = this->top;
+        this->top = this->top->next;
+        delete (temp);
     }
 }
