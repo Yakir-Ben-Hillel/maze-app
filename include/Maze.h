@@ -19,7 +19,7 @@ void showMaze();
 private:
 char** maze;
 int h,w;
-bool hasNeighbors(int curr_h,int curr_w,int& neighbor_h,int& neighbor_w,Stack s);
+bool hasNeighbors(int curr_h,int curr_w,int& neighbor_h,int& neighbor_w,Node& curr);
 };
 
 #endif

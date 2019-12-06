@@ -1,12 +1,12 @@
 #include "../../include/Node.h"
 
-Node::Node(int h, int w, char ch, Node *next) : h(h), w(w), ch(ch)
+Node::Node(int h, int w,Node *next) : h(h), w(w)
 {
     this->next = next;
-    this->neighbors[0]=false;
-    this->neighbors[1]=false;
-    this->neighbors[2]=false;
-    this->neighbors[3]=false;
+    this->neighbors[0] = false;
+    this->neighbors[1] = false;
+    this->neighbors[2] = false;
+    this->neighbors[3] = false;
 }
 Node::~Node()
 {
@@ -15,12 +15,11 @@ Node::~Node()
 Node::Node(const Node &node)
 {
     setData(node.h, node.w);
-    setChar(node.ch);
     setNext(node.next);
-    this->neighbors[0]=node.neighbors[0];
-    this->neighbors[1]=node.neighbors[1];
-    this->neighbors[2]=node.neighbors[2];
-    this->neighbors[3]=node.neighbors[3];
+    this->neighbors[0] = node.neighbors[0];
+    this->neighbors[1] = node.neighbors[1];
+    this->neighbors[2] = node.neighbors[2];
+    this->neighbors[3] = node.neighbors[3];
 }
 void Node::insertAfter(Node *newNode)
 {
@@ -44,10 +43,6 @@ void Node::setNext(Node *next)
 {
     this->next = next;
 }
-void Node::setChar(char ch)
-{
-    this->ch = ch;
-}
 void Node::getData(int &h, int &w) const
 {
     h = this->h;
@@ -57,7 +52,11 @@ Node *Node::getNext() const
 {
     return this->next;
 }
-char Node::getChar() const
+bool Node::getNeighborPlace(int i) const
 {
-    return this->ch;
+    return this->neighbors[i];
+}
+void Node::setNeighborPlace(int i)
+{
+    this->neighbors[i] = true;
 }

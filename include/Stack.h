@@ -9,8 +9,7 @@ public:
     Stack();
     ~Stack();
     bool isEmpty();
-    bool searchNodeInStack(int given_h, int given_w);
-    void push(int h, int w, char ch);
+    void push(int h, int w);
     void push(Node* node);
     Node *pop();
     Node *Top() const;
