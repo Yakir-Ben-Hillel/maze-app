@@ -222,3 +222,15 @@ void Maze::showMaze()
         cout << endl;
     }
 }
+void Maze::changeDollars()
+{
+    char **maze = this->getMaze();
+    for (int i = 1; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            if (maze[i][j] == '$')
+                maze[i][j] = ' ';
+        }
+    }
+}

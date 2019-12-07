@@ -19,6 +19,7 @@ public:
     int gethight() const;
     int getwidth() const;
     void showMaze();
+    void changeDollars();
 
 private:
     char **maze;
@@ -26,5 +27,11 @@ private:
     bool hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w);
     void insertNeighborsToQueue(int curr_h, int curr_w, Queue &q);
 };
+void M_free(char **arr, int h);
+void randomMaze(int h, int w);
+void startMaze();
+void userMaze(int h, int w);
+bool ifValidMaze(char **maze_to_check, int h, int w);
+void changeDollars(int h, int w, char **maze);
 
 #endif
