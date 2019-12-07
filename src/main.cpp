@@ -3,5 +3,6 @@
 int main()
 {
 	startMaze();
+	system("pause");
 }
 
