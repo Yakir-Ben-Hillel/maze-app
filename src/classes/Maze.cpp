@@ -97,7 +97,6 @@ bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w
         neighbor_h = curr_h - 2;
         neighbor_w = curr_w;
         this->maze[curr_h - 1][curr_w] = ' '; //breaking the wall between the neighbors
-        //curr.setNeighborPlace(0);             //it means that we visit this neighbor and set it to be true
         return true;
         break;
     case 1:
@@ -111,14 +110,12 @@ bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w
         neighbor_h = curr_h + 2;
         neighbor_w = curr_w;
         this->maze[curr_h + 1][curr_w] = ' '; //breaking the wall between the neighbors
-        //curr.setNeighborPlace(2);
         return true;
         break;
     case 3:
         neighbor_h = curr_h;
         neighbor_w = curr_w + 2;
         this->maze[curr_h][curr_w + 1] = ' '; //breaking the wall between the neighbors
-                                              // curr.setNeighborPlace(3);
         return true;
         break;
 
@@ -135,7 +132,7 @@ void Maze::setMaze(char **maze)
     {
         for (int i = 0; i < this->h; i++)
         {
-            this->maze[i] = new char[this->w+1];
+            this->maze[i] = new char[this->w + 1];
             if (i % 2 == 0)
             {
                 for (int j = 0; j < w; j++)
