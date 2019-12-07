@@ -40,6 +40,9 @@ int main()
 		cout << "Finished Maze" << endl;
 		changeDollars(h, w, maze.getMaze());
 		maze.showMaze();
+		cout << "Finished Solution" << endl;
+		maze.solveMaze();
+		maze.showMaze();
 	}
 	else //if (x == 2)insert the user's maze
 	{

@@ -1,10 +1,9 @@
 #ifndef __Point
 #define __Point
-#include "Maze.h"
 class Point
 {
 public:
-    Point() = default;
+    Point();
     Point(int h, int w);
     Point(Point &other);
     void getPoint(int &h, int &w) const;

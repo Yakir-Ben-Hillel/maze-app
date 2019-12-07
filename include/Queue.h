@@ -1,7 +1,7 @@
 #ifndef __QUEUE_H
 #define __QUEUE_H
 const int MAX_SIZE = 2000;
-#include "./Point.h"
+#include "./Maze.h"
 class Queue
 {
 public:
@@ -10,7 +10,7 @@ public:
     void makeEmpty(void);
     bool isEmpty(void);
     Point front(void);
-    void enQueue(Point item);
+    void enQueue(int h, int w);
     Point deQueue(void);
 
 private:

@@ -1,7 +1,8 @@
 #include "../../include/Point.h"
 Point::Point()
 {
-    this->h = this->w = 1;
+    this->h = 1;
+    this->w = 0;
 }
 Point::Point(int h, int w)
 {

@@ -25,15 +25,16 @@ void Queue::makeEmpty()
     head = 1;
     tail = 0;
 }
-void Queue::enQueue(Point item)
+void Queue::enQueue(int h, int w)
 {
-    if (addOne(addOne(tail) == head))
+    if ((addOne(addOne(tail)) == head))
     {
         cout << "Error: QUEUE FULL" << endl;
         exit(1);
     }
     tail = addOne(tail);
-    data[tail] = item;
+    Point p(h, w);
+    data[tail] = p;
 }
 Point Queue::deQueue(void)
 {

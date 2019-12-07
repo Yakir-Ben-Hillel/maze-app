@@ -58,7 +58,47 @@ void Maze::createMaze()
         }
     }
 }
+void Maze::solveMaze()
+{
+    Queue q;
+    int curr_h, curr_w, neighbor_h, neighbor_w;
+    q.enQueue(1, 1); //setting the stack to the first element in the maze.
+    Point temp;
+    while (!q.isEmpty())
+    {
+        temp = q.deQueue();
+        temp.getPoint(curr_h, curr_w); //updating the curr_h and curr_w by ref
+        this->maze[curr_h][curr_w] = '$';
+        if (curr_h == h - 2 && curr_w == w - 2) //if we got to the point near to the exit it means we have a path from the start to the end
+        {
+            q.makeEmpty(); //we got to the exit so we free the stack and finish the building of the maze
+        }
+        else
+        {
+            this->insertNeighborsToQueue(curr_h, curr_w, q);
+        }
+    }
+}
+void Maze::insertNeighborsToQueue(int curr_h, int curr_w, Queue &q)
+{
+    if (curr_w + 2 < this->w - 1 && this->maze[curr_h][curr_w + 1] != '*' && this->maze[curr_h][curr_w + 2] != '$')
+    {
+        q.enQueue(curr_h, curr_w + 2);
+    }
+    if (curr_h + 2 < this->h - 1 && this->maze[curr_h + 1][curr_w] != '*' && this->maze[curr_h + 2][curr_w] != '$')
+    {
+        q.enQueue(curr_h + 2, curr_w);
+    }
+    if (curr_w - 2 > 0 && this->maze[curr_h][curr_w - 1] != '*' && this->maze[curr_h][curr_w - 2] != '$')
+    {
+        q.enQueue(curr_h, curr_w - 2);
+    }
 
+    if (curr_h - 2 > 0 && this->maze[curr_h - 1][curr_w] != '*' && this->maze[curr_h - 2][curr_w] != '$')
+    {
+        q.enQueue(curr_h - 2, curr_w);
+    }
+}
 bool Maze::hasNeighbors(int curr_h, int curr_w, int &neighbor_h, int &neighbor_w)
 {
     int arr[5]; //The last one is for the option that no matter what we go back a step.
