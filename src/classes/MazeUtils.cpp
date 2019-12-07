@@ -99,7 +99,11 @@ void userMaze(int h, int w)
     {
         Maze maze(h, w, temp);
         M_free(temp, h);
+        cout<<"your maze: "<<endl;
         maze.showMaze(); //show why a friend function does not work
+        cout<<"Final solution: "<<endl;
+        maze.solveMaze();
+        maze.showMaze();
     }
     else
     {
