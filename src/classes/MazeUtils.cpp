@@ -92,16 +92,20 @@ void userMaze(int h, int w)
     for (int i = 0; i < h; i++)
     {
         temp[i] = new char[w + 1];
-        cin.getline(temp[i], w);
+        for (int j = 0; j < w; j++)
+        {
+            cin >> temp[i][j];
+        }
         temp[i][w] = '\0';
+        cleanbuffer();
     }
     if (ifValidMaze(temp, h, w) == true) //checks if the user's maze is valid. //TODO
     {
         Maze maze(h, w, temp);
         M_free(temp, h);
-        cout<<"your maze: "<<endl;
+        cout << "your maze: " << endl;
         maze.showMaze(); //show why a friend function does not work
-        cout<<"Final solution: "<<endl;
+        cout << "Final solution: " << endl;
         maze.solveMaze();
         maze.showMaze();
     }
@@ -110,4 +114,13 @@ void userMaze(int h, int w)
         cout << "invalid input" << endl;
         exit(1);
     }
+}
+
+void cleanbuffer()
+{
+    int c;
+    do
+    {
+        c = getchar();
+    } while (c != EOF && c != '\n');
 }
