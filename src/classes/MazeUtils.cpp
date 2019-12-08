@@ -7,9 +7,10 @@ void M_free(char **arr, int h)
     }
     delete[] arr;
 }
-
+//we already checked if the h and w are valid,now we are checking if the maze has all the walls and all the chars are ' ' or '*'
 bool ifValidMaze(char **maze_to_check, int h, int w)
 {
+    int sizeOfLine = strlen(maze_to_check[1]);
     if (h % 2 == 0 || w % 2 == 0) //the maze height or width must be odd
         return false;
     else if (maze_to_check[1][0] != ' ' || maze_to_check[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
@@ -24,12 +25,16 @@ bool ifValidMaze(char **maze_to_check, int h, int w)
                 return false;
             if (maze_to_check[i][w - 1] != '*' && i != h - 2)
                 return false;
+            if (sizeOfLine != strlen(maze_to_check[i]))
+                return false;
             //this loop checks if the top and the bottom walls are exist.
             for (int j = 0; j < w; j++)
             {
                 if (maze_to_check[0][j] != '*')
                     return false;
                 if (maze_to_check[h - 1][j] != '*')
+                    return false;
+                if (maze_to_check[i][j] != ' ' || maze_to_check[i][j] != '*')
                     return false;
             }
         }

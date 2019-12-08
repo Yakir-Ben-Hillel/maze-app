@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #pragma warning(disable : 4996)
 using namespace std;
