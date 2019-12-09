@@ -11,7 +11,7 @@ void M_free(char **arr, int h)
 bool ifValidMaze(char **maze_to_check, int h, int w)
 {
     int sizeOfLine = strlen(maze_to_check[0]);
-    SetMazeSpace(&maze_to_check,h,w);
+    SetMazeSpace(&maze_to_check, h, w);
     if (h % 2 == 0 || w % 2 == 0) //the maze height or width must be odd
         return false;
     else if (maze_to_check[1][0] != ' ' || maze_to_check[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
@@ -120,14 +120,14 @@ void userMaze(int h, int w)
     }
 }
 
-void SetMazeSpace(char*** temp,int h,int w)
+void SetMazeSpace(char ***temp, int h, int w)
 {
-    for(int i=0;i<h;i++)
+    for (int i = 0; i < h; i++)
     {
-        for(int j=0;j<w;j++)
+        for (int j = 0; j < w; j++)
         {
-            if((*temp)[i][j]!=' '&&(*temp)[i][j]!='*')
-                (*temp)[i][j]=' ';
+            if ((*temp)[i][j] != ' ' && (*temp)[i][j] != '*')
+                (*temp)[i][j] = ' ';
         }
     }
 }
