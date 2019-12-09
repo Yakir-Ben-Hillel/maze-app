@@ -1,11 +1,10 @@
 #ifndef __QUEUE_H
 #define __QUEUE_H
-const int MAX_SIZE = 2000;
 #include "./Maze.h"
 class Queue
 {
 public:
-    Queue();
+    Queue(int h, int w);
     ~Queue();
     void makeEmpty(void);
     bool isEmpty(void);
@@ -15,7 +14,8 @@ public:
 
 private:
     int head, tail;
-    Point data[MAX_SIZE];
-    static int addOne(int x);
+    const int size;
+    Point *data;
+    int addOne(int x);
 };
 #endif

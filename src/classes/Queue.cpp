@@ -1,12 +1,14 @@
 #include "../../include/Queue.h"
-Queue::Queue()
+Queue::Queue(int h, int w) : size(h * w)
 {
     head = 1;
     tail = 0;
+    this->data = new Point[h * w];
 }
 Queue::~Queue()
 {
     this->makeEmpty();
+    delete[] this->data;
 }
 Point Queue::front()
 {
@@ -14,7 +16,7 @@ Point Queue::front()
 }
 int Queue::addOne(int x)
 {
-    return ((1 + x) % MAX_SIZE);
+    return ((1 + x) % this->size);
 }
 bool Queue::isEmpty(void)
 {
