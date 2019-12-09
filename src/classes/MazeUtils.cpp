@@ -85,7 +85,7 @@ void randomMaze(int h, int w)
     cout << "Maze Skeleton:" << endl;
     maze.showMaze();
     maze.createMaze();
-    cout << "Finished Maze" << endl;
+    cout << "Built Maze" << endl;
     maze.changeDollars();
     maze.showMaze();
     cout << "Finished Solution" << endl;
