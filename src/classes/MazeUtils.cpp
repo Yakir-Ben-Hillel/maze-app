@@ -99,7 +99,7 @@ void userMaze(int h, int w)
     for (int i = 0; i < h; i++)
     {
         temp[i] = new char[w + 1];
-        cin.getline(temp[i], w + 1, '\n');
+        cin.getline(temp[i], w , '\n');
         if (i < h - 1)
             getchar(); //flush the '\n' from the buffer
     }
