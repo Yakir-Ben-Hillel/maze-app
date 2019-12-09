@@ -60,7 +60,7 @@ void Maze::createMaze()
 }
 void Maze::solveMaze()
 {
-    Queue q;
+    Queue q(this->h,this->w);
     int curr_h, curr_w, neighbor_h, neighbor_w;
     q.enQueue(1, 1); //setting the stack to the first element in the maze.
     Point temp;

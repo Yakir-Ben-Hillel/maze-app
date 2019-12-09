@@ -4,7 +4,7 @@
 class Queue
 {
 public:
-    Queue(int h, int w);
+    Queue(int h=25, int w=79);
     ~Queue();
     void makeEmpty(void);
     bool isEmpty(void);
