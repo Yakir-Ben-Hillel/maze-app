@@ -97,10 +97,7 @@ void userMaze(int h, int w)
     for (int i = 0; i < h; i++)
     {
         temp[i] = new char[w + 1];
-        for (int j = 0; j < w; j++)
-        {
-            cin >> temp[i][j];
-        }
+        cin.getline(temp[i],w);
         temp[i][w] = '\0';
         cleanbuffer();
     }
