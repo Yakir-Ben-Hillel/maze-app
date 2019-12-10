@@ -8,33 +8,33 @@ void M_free(char **arr, int h)
     delete[] arr;
 }
 //we already checked if the h and w are valid,now we are checking if the maze has all the walls and all the chars are ' ' or '*'
-bool ifValidMaze(char **maze_to_check, int h, int w)
+bool Maze::isMazeValid()
 {
-    int sizeOfLine = strlen(maze_to_check[0]);
+    int sizeOfLine = strlen(this->maze[0]);
     if (h % 2 == 0 || w % 2 == 0) //the maze height or width must be odd
         return false;
-    else if (maze_to_check[1][0] != ' ' || maze_to_check[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
+    else if (this->maze[1][0] != ' ' || this->maze[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
         return false;
     else //the maze must have a path from the enter to the exit from the entrance
     {
         //this loop check if all the walls are in the maze
-        for (int i = 0; i < h; i++)
+        for (int i = 0; i < this->h; i++)
         {
             //the next two ifs check if the left and right walls are exist.
-            if (maze_to_check[i][0] != '*' && i != 1)
+            if (this->maze[i][0] != '*' && i != 1)
                 return false;
-            if (maze_to_check[i][w - 1] != '*' && i != h - 2)
+            if (this->maze[i][this->w - 1] != '*' && i != this->h - 2)
                 return false;
-            if (sizeOfLine != strlen(maze_to_check[i]))
+            if (sizeOfLine != strlen(this->maze[i]))
                 return false;
             //this loop checks if the top and the bottom walls are exist.
             for (int j = 0; j < w; j++)
             {
-                if (maze_to_check[0][j] != '*')
+                if (this->maze[0][j] != '*')
                     return false;
-                if (maze_to_check[h - 1][j] != '*')
+                if (this->maze[h - 1][j] != '*')
                     return false;
-                if (maze_to_check[i][j] != ' ' && maze_to_check[i][j] != '*')
+                if (this->maze[i][j] != ' ' && this->maze[i][j] != '*')
                     return false;
             }
         }
@@ -111,7 +111,7 @@ void userMaze(int h, int w)
     cout << "The maze you built" << endl;
     maze.showMaze();
 
-    if (maze.solveMaze() == true)
+    if (maze.isMazeValid() && maze.solveMaze())
     {
         cout << "your maze: " << endl;
         cout << "Final solution: " << endl;

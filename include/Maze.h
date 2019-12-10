@@ -14,6 +14,7 @@ public:
     ~Maze();
     void createMaze();
     bool solveMaze();
+    bool isMazeValid();
     void setMaze(char **maze);
     char **getMaze() const;
     int gethight() const;
