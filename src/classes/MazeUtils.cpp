@@ -11,7 +11,6 @@ void M_free(char **arr, int h)
 bool ifValidMaze(char **maze_to_check, int h, int w)
 {
     int sizeOfLine = strlen(maze_to_check[0]);
-    SetMazeSpace(&maze_to_check, h, w);
     if (h % 2 == 0 || w % 2 == 0) //the maze height or width must be odd
         return false;
     else if (maze_to_check[1][0] != ' ' || maze_to_check[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
@@ -95,13 +94,17 @@ void randomMaze(int h, int w)
 void userMaze(int h, int w)
 {
     cout << "insert your maze: " << endl;
+   // cin.ignore();
     char **temp = new char *[h];
-    for (int i = 0; i < h; i++)
+    char str[80];
+    cin.getline(str,80);
+    temp[0]=new char[w+1];
+    strcpy(temp[0],str);
+    for (int i = 1; i < h; i++)
     {
+        cin.getline(str,80);
         temp[i] = new char[w + 1];
-        cin.getline(temp[i], w , '\n');
-        if (i < h - 1)
-            getchar(); //flush the '\n' from the buffer
+        strcpy(temp[i],str);
     }
     if (ifValidMaze(temp, h, w) == true) //checks if the user's maze is valid. //TODO
     {
@@ -120,14 +123,3 @@ void userMaze(int h, int w)
     }
 }
 
-void SetMazeSpace(char ***temp, int h, int w)
-{
-    for (int i = 0; i < h; i++)
-    {
-        for (int j = 0; j < w; j++)
-        {
-            if ((*temp)[i][j] != ' ' && (*temp)[i][j] != '*')
-                (*temp)[i][j] = ' ';
-        }
-    }
-}
