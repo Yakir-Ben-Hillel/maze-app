@@ -33,8 +33,5 @@ void M_free(char **arr, int h);
 void randomMaze(int h, int w);
 void startMaze();
 void userMaze(int h, int w);
-bool ifValidMaze(char **maze_to_check, int h, int w);
-void changeDollars(int h, int w, char **maze);
-void SetMazeSpace(char*** temp,int h,int w);
 
 #endif
