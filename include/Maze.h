@@ -13,7 +13,7 @@ public:
     Maze(int h = max_h, int w = max_w, char **maze = nullptr);
     ~Maze();
     void createMaze();
-    void solveMaze();
+    bool solveMaze();
     void setMaze(char **maze);
     char **getMaze() const;
     int gethight() const;

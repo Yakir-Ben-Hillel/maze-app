@@ -58,9 +58,9 @@ void Maze::createMaze()
         }
     }
 }
-void Maze::solveMaze()
+bool Maze::solveMaze()
 {
-    Queue q(this->h,this->w);
+    Queue q(this->h, this->w);
     int curr_h, curr_w, neighbor_h, neighbor_w;
     q.enQueue(1, 1); //setting the stack to the first element in the maze.
     Point temp;
@@ -72,12 +72,14 @@ void Maze::solveMaze()
         if (curr_h == h - 2 && curr_w == w - 2) //if we got to the point near to the exit it means we have a path from the start to the end
         {
             q.makeEmpty(); //we got to the exit so we free the stack and finish the building of the maze
+            return true;
         }
         else
         {
             this->insertNeighborsToQueue(curr_h, curr_w, q);
         }
     }
+    return false;
 }
 void Maze::insertNeighborsToQueue(int curr_h, int curr_w, Queue &q)
 {

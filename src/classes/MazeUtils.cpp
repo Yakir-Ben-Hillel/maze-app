@@ -94,26 +94,27 @@ void randomMaze(int h, int w)
 void userMaze(int h, int w)
 {
     cout << "insert your maze: " << endl;
-   // cin.ignore();
+    // cin.ignore();
     char **temp = new char *[h];
     char str[80];
-    cin.getline(str,80);
-    temp[0]=new char[w+1];
-    strcpy(temp[0],str);
+    cin.getline(str, 80);
+    temp[0] = new char[w + 1];
+    strcpy(temp[0], str);
     for (int i = 1; i < h; i++)
     {
-        cin.getline(str,80);
+        cin.getline(str, 80);
         temp[i] = new char[w + 1];
-        strcpy(temp[i],str);
+        strcpy(temp[i], str);
     }
-    if (ifValidMaze(temp, h, w) == true) //checks if the user's maze is valid. //TODO
+    Maze maze(h, w, temp);
+    M_free(temp, h);
+    cout << "The maze you built" << endl;
+    maze.showMaze();
+
+    if (maze.solveMaze() == true)
     {
-        Maze maze(h, w, temp);
-        M_free(temp, h);
         cout << "your maze: " << endl;
-        maze.showMaze(); //show why a friend function does not work
         cout << "Final solution: " << endl;
-        maze.solveMaze();
         maze.showMaze();
     }
     else
@@ -122,4 +123,3 @@ void userMaze(int h, int w)
         exit(1);
     }
 }
-
