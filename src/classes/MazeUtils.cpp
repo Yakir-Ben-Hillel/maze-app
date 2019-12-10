@@ -112,7 +112,7 @@ void userMaze(int h, int w)
     maze.showMaze();
 
     if (maze.isMazeValid() && maze.solveMaze())
-    {
+    { //Checks if the given input is valid in the maze structure, and if the maze as a solution.
         cout << "your maze: " << endl;
         cout << "Final solution: " << endl;
         maze.showMaze();
