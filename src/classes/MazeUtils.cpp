@@ -13,6 +13,8 @@ bool Maze::isMazeValid()
     int sizeOfLine = strlen(this->maze[0]);
     if (h % 2 == 0 || w % 2 == 0) //the maze height or width must be odd
         return false;
+    else if ((h > 25 || w > 80)&&(h<0||w<0))
+        return false;
     else if (this->maze[1][0] != ' ' || this->maze[h - 2][w - 1] != ' ') //the maze must have both entrance and exit
         return false;
     else //the maze must have a path from the enter to the exit from the entrance
@@ -69,11 +71,11 @@ void startMaze()
         if (h % 2 == 0 || w % 2 == 0)
             cout << "invalid values please try again" << endl;
     } while ((h > 25 || w > 79) || (h < 0 || w < 0) || (h % 2 == 0 || w % 2 == 0));
-    if (x == 1) //making a random maze
+    if (x == 2) //making a random maze
     {
         randomMaze(h, w);
     }
-    else //if (x == 2)insert the user's maze
+    else //if (x == 1)insert the user's maze
     {
         userMaze(h, w);
     }
