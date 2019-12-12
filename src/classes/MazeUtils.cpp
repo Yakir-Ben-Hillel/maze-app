@@ -105,6 +105,10 @@ void userMaze(int h, int w)
         cin.getline(str, 80);
         temp[i] = new char[w + 1];
         strcpy(temp[i], str);
+        if (strlen(temp[i]) < w)
+        {
+            putSpaces(temp[i], strlen(temp[i]), w);
+        }
     }
     Maze maze(h, w, temp);
     M_free(temp, h);
@@ -122,4 +126,13 @@ void userMaze(int h, int w)
         cout << "invalid input" << endl;
         exit(1);
     }
+}
+
+void putSpaces(char *matrix, int start, int end)
+{
+    for (int i = start; i < end; i++)
+    {
+        matrix[i] = ' ';
+    }
+    matrix[end] = '\0';
 }

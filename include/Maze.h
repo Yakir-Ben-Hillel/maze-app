@@ -33,5 +33,6 @@ void M_free(char **arr, int h);
 void randomMaze(int h, int w);
 void startMaze();
 void userMaze(int h, int w);
+void putSpaces(char *matrix, int start, int end);
 
 #endif
